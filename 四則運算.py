@@ -7,6 +7,14 @@ Created on Sat Jul 27 17:07:26 2024
 
 import random
 
+primes = []
+for i in range(2,101):
+    for x in range(2,i):
+        if i%x == 0:
+            break
+    else:
+        primes.append(i)
+
 while True:
     a = int(input("請輸入1=>+,2=>-,3=>*,4=>/,5=>quit:"))
     x=random.randint(1,100)
@@ -25,13 +33,18 @@ while True:
         b = int(input(str(x)+' * '+str(y)+' = '))
     elif a == 4:
         while True:
-            if x > y and x % y == 0:
-                z = x//y
-                b = int(input(str(x)+' / '+str(y)+' = '))
+            if x not in primes:
+                y = random.randint(2,x-1)
+                while True:
+                    if x%y == 0:
+                        z = x//y
+                        b = int(input(str(x)+' / '+str(y)+' = '))
+                        break
+                    else:
+                        y = random.randint(2,x-1)
                 break
             else:
                 x=random.randint(1,100)
-                y=random.randint(1,100)
     elif a == 5:
         break
     else:
